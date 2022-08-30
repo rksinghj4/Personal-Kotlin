@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
 
 }
 
-fun printWeekDay(n: Any){
+fun printWeekDay(n: Any) {
     when (n) {
         1 -> {
             println("Sunday")
