@@ -3,7 +3,7 @@ package com.example.genericsandvariancedemo.function
 import kotlin.reflect.KClass
 
 /**
- * To access the type parameter inside called function
+ * To access the type of parameter inside called function
  * here we are passing an additional parameter of type KClass<T>.
  * To avoid passing of redundant parameter of KClass<T> type, we can use reified with inline.
  */

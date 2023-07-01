@@ -13,8 +13,10 @@ class Container_<T>(t: T) {
 
 /*
  * Kotlin makes arrays invariant by default. By extension, generic types are invariant in Kotlin.
- * This can be managed by the out and in keywords. Invariance is the property
- * by which a standard generic function/class already defined for a particular data type,
+ * This can be managed by the out and in keywords.
+ *
+ * Invariance is the property by which
+ * a standard generic function/class already defined for a particular data type,
  * cannot accept or return another datatype.
  */
 

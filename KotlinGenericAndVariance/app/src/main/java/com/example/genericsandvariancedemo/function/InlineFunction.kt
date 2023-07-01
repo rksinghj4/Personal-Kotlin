@@ -27,9 +27,10 @@ val lambda2 = {
  *inline fun + crossinline formal parameter -  can accept a lambda expression with return@lable, where lable is to nearest block..
  *
  */
-inline fun inlinedFun(lambda1: () -> Unit, noinline lambda2: () -> Unit, crossinline lambda3: () -> Unit) {
+inline fun inlinedFun(lambda1: () -> Unit, noinline lambda2: () -> Unit,  crossinline lambda3: () -> Unit) {
     lambda1()
     lambda2()
+    lambda3()
 }
 
 // main function
@@ -40,7 +41,8 @@ fun main(args: Array<String>) {
     inlinedFun(
         lambda1 ={
             println("Return is allowed in lambda expression if it is passed as an actual argument to inline function")
-            return
+            return //Because of this return - Compiler will not perform inlining copy at call site
+                 // for succeeded lambda expression.
         },
 
         lambda2 = {
