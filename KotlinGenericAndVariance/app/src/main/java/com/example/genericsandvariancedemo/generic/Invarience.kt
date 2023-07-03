@@ -1,6 +1,6 @@
 package com.example.genericsandvariancedemo.generic
 
-open class Fruit_{
+open class Fruit_ {
 }
 
 class Mango_() : Fruit_() {
@@ -18,6 +18,21 @@ class Container_<T>(t: T) {
  * Invariance is the property by which
  * a standard generic function/class already defined for a particular data type,
  * cannot accept or return another datatype.
+ *
+ *
+ *
+ * Arrays in Kotlin are invariant.
+ * Arrays in Kotlin are not built on native types, but are instead based on a Java array.
+ * Although these are similar, they do behave slightly differently.
+ * In Java, we can assign an array of a type to an array of its parent type.
+ * (In java array supports Covariance)
+ *
+ * Arrays in Kotlin are invariant, which means that an array of a specific type
+ * cannot be assigned to an array of its parent type.
+ * It is not possible to assign Array<Integer> to Array<Any>.
+ * This provides implicit type safety and prevents possible runtime errors in the application.
+ *  Kotlin also provides specialized classes to create arrays of primitive data types,
+ *  including ByteArray, ShortArray, and IntArray.
  */
 
 fun main() {
@@ -38,7 +53,7 @@ fun main() {
 
     //var mango3: Container_<Fruit_> = Container_<Mango_>(Mango_()) //Error: Type mismatch
 
-    fruit1  = mango1 //Covariance/Producer-out - Parent can hold child
+    fruit1 = mango1 //Covariance/Producer-out - Parent can hold child
 
     //fruit2 = mango1 // Error: (Consumer in) - Because child can consume parent but not opposite
 

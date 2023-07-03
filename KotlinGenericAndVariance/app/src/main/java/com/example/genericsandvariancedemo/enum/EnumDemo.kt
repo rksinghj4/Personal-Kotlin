@@ -29,11 +29,12 @@ fun main() {
 class MyClass {
     companion object {
         // member function of companion object
-        fun display(str :String) : String{
+        fun display(str: String): String {
             return str
         }
     }
 }
+
 // extension function of companion object
 fun MyClass.Companion.abc() {
     println("Extension function of companion object")

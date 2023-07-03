@@ -1,7 +1,8 @@
 package com.example.genericsandvariancedemo.abstract
 
 //abstract class
-abstract class Employee(val name: String, val experience: Int) {   // By default Non-Abstract Property are final
+abstract class Employee(val name: String, val experience: Int) {
+    // By default Non-Abstract Property are final
     final var address = "Aligarh"
     get() = field
     set(value) {

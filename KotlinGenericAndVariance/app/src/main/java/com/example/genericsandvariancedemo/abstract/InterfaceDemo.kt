@@ -1,6 +1,14 @@
 package com.example.genericsandvariancedemo.abstract
 
+/**
+ * 1. Property in interface can't have backing field.
+ * 2. final modifier is not allowed in interface.
+ * 3. Interface can't hould the state.
+ * 4. We can't instantiate the interface.
+ * 5. Members inside interface are by default open.
+ */
 interface Animal {
+
     /*val name: String
         get() = field*/
 
@@ -14,7 +22,7 @@ interface Animal {
         }*/
 
     open fun makeVoice() {
-        print("<${this::class.simpleName}Animal voice>")
+        print("<${this::class.simpleName} Animal voice>")
     }
 }
 

@@ -5,7 +5,7 @@ import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
 open class Person(open val name: String, private var age: Int) {
-    private var phone = "9895977503"
+    private var phone = "9895775902"
     var address = "India"
     constructor(name: String, age: Int, phone: String) : this(name = name, age = age)
 

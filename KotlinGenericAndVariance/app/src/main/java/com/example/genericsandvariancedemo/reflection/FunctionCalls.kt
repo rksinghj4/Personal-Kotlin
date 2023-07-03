@@ -35,7 +35,7 @@ fun main() {
 
     // Function reference obtained implicitly
     val x = add(3, 5)
-    println("3 + 5 $x")
+    println("3 + 5 = $x")
 
     val isDivisibleBy2Ref = ::isDivisibleBy2
     println(isDivisibleBy2Ref)
