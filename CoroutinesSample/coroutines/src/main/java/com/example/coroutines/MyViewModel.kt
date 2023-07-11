@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -25,18 +26,21 @@ class MyViewModel: ViewModel() {
         GlobalScope.launch(EmptyCoroutineContext, CoroutineStart.DEFAULT) {
             //Thread.Sleep(5000) is different from delay(5000), because delay method suspends only current coroutine not the entire thread
             //delay(5000)
-            Log.d(TAG, "CoroutineStart.DEFAULT, GlobalScope executes in Thread: " + Thread.currentThread().name)
+            Log.d(TAG, "C1 executes in Thread: " + Thread.currentThread().name)
         }
 
         GlobalScope.launch(EmptyCoroutineContext, CoroutineStart.DEFAULT) {
             //Thread.Sleep(5000) is different from delay(5000), because delay method suspends only current coroutine not the entire thread
             //delay(5000)
-            Log.d(TAG, "CoroutineStart.DEFAULT, GlobalScope2 executes in Thread: " + Thread.currentThread().name)
+            Log.d(TAG, "C2 executes in Thread: " + Thread.currentThread().name)
         }
 
 
         GlobalScope.launch(EmptyCoroutineContext, CoroutineStart.UNDISPATCHED) {
-            Log.d(TAG, "CoroutineStart.UNDISPATCHED, GlobalScope executes in Thread: " + Thread.currentThread().name)
+            Log.d(TAG, "C3 executes in Thread: " + Thread.currentThread().name)
+            delay(2000)
+            Log.d(TAG, "C3 after delay executes in Thread: " + Thread.currentThread().name)
+
         }
 
         /*// lifecycleScope can not be access in ViewModel
@@ -46,7 +50,7 @@ class MyViewModel: ViewModel() {
 
         viewModelScope.launch(EmptyCoroutineContext, CoroutineStart.DEFAULT) {
             withContext(Dispatchers.IO) {
-                Log.d(TAG, "CoroutineStart.DEFAULT, Dispatchers.IO, viewModelScope executes in Thread: " + Thread.currentThread().name)
+                Log.d(TAG, "C4 executes in Thread: " + Thread.currentThread().name)
             }
         }
 

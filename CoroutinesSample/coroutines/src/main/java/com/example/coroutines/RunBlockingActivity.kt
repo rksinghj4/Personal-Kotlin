@@ -3,12 +3,14 @@ package com.example.coroutines
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.supervisorScope
 
 const val TAG = "RUN_BLOCKING"
 
@@ -16,10 +18,13 @@ class RunBlockingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var start = System.currentTimeMillis()
+        //lifecycleScope.coroutineContext
         Log.d(
             TAG,
             "Befor GlobalScope,  in Thread: " + Thread.currentThread().name + ", Start time : $start"
         )
+        //Suspend function - 'supervisorScope' should be called only from a coroutine or another suspend function
+        //supervisorScope {  }
         // Will not block the main thread
         GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
             val start = System.currentTimeMillis()
