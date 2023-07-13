@@ -38,9 +38,30 @@ fun main(args: Array<String>) = runBlocking {
      * after delay() or suspend function, it will resume on different thread.
      */
     launch(Dispatchers.Unconfined) {
-        println("C3: ${Thread.currentThread().name}") //main
+        println("C3: ${Thread.currentThread().name}") //Thread: main
         delay(1000)
-        println("C3 after delay: ${Thread.currentThread().name}") // Run on some different thread
+        println("C3 after delay: ${Thread.currentThread().name}") // Run on some different thread T2
+
+        /**
+         * Using coroutineContext property to flow context from parent to child.
+         * coroutineContext - act as confined
+         */
+        launch(coroutineContext) {
+            println("C4: ${Thread.currentThread().name}") //Thread : same as C3 after delay (i.e T2)
+            delay(1000)
+            println("C4 after delay: ${Thread.currentThread().name}") //Thread: Same as C4: (i.e before delay, T2)
+        }
+
+    }
+
+    /**
+     * Using coroutineContext property to flow context from parent to child.
+     * coroutineContext - act as confined
+     */
+    launch(coroutineContext) {
+        println("C5: ${Thread.currentThread().name}") //Thread : main
+        delay(1000)
+        println("C5 after delay: ${Thread.currentThread().name}") //Thread: main
     }
 
     println("Last statement should return the Unit, because main return the unit")
