@@ -12,7 +12,7 @@ fun main(args: Array<String>) = runBlocking {
     /**
      * Without parameter: CONFINED [CONFINED DISPATCHER]
      * Inherits CoroutineContext from immediate parent,
-     * Even after delay or suspend function, it continue to run on the same thread
+     * Even after delay or any custom suspend function, it continue to run on the same thread
      */
     launch {
         println("C1: ${Thread.currentThread().name}") //Thread: main
