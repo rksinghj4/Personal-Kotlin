@@ -19,11 +19,11 @@ fun getNetworkStateStatement(state: NetworkStateUsingEnum) {
         }
         /*NetworkStateUsingEnum.DISCONNECTED -> {
             println("IsConnected: " + state.isConnect)
-        }
+        }*/
 
         else -> {// Else is not needed at all, If when is used as an Statement.
             println("NONE")
-        }*/
+        }
     }
 }
 //enum class notes:
