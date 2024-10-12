@@ -2,7 +2,9 @@ package com.example.flowschannels
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onEach
@@ -25,7 +27,7 @@ import kotlinx.coroutines.withContext
  * then it will become exactly like LiveData.
  */
 private suspend fun producer(): MutableStateFlow<Int> {
-    val mutableStateFlow = MutableStateFlow<Int>(-1)
+    val mutableStateFlow = MutableStateFlow<Int>(-1)// initial vale here
     CoroutineScope(Dispatchers.IO).launch {
         repeat(5) {
             println("Emitted: $it")
@@ -38,7 +40,7 @@ private suspend fun producer(): MutableStateFlow<Int> {
 }
 
 
-fun hotFlow() = runBlocking {
+fun hotFlowWithMutableStateFlow() = runBlocking {
     withContext(Dispatchers.IO) {
         val data: MutableStateFlow<Int> = producer()
         println("Consumer Coroutine: Launched")
@@ -47,7 +49,7 @@ fun hotFlow() = runBlocking {
                 println("Collected 1st: $value")
             }
         }
-        delay(2500)
+        delay(5000)
         CoroutineScope(this.coroutineContext).launch {
             data.collect { value ->
                 println("Collected 2nd: $value")
@@ -58,7 +60,38 @@ fun hotFlow() = runBlocking {
 
 fun main() {
     println("Calling: hotFlow()")
-    hotFlow()
+    //hotFlowWithMutableStateFlow()
+    hotFlowWithMutableSharedFlow()
 }
 
 
+suspend fun producerWithMutableSharedFlow(): MutableSharedFlow<Int> {
+    val mutableSharedFlow = MutableSharedFlow<Int>(replay = 10)//No initial vale here
+    CoroutineScope(Dispatchers.IO).launch {
+        repeat(5) {
+            delay(1000)
+            println("Emitted: $it")
+            mutableSharedFlow.emit(it)//value property is not there.
+        }
+    }
+
+    return mutableSharedFlow
+}
+
+fun hotFlowWithMutableSharedFlow() = runBlocking {
+    withContext(Dispatchers.IO) {
+        val data: MutableSharedFlow<Int> = producerWithMutableSharedFlow()
+        println("Consumer Coroutine: Launched")
+        CoroutineScope(this.coroutineContext).launch {
+            data.collect { value ->
+                println("Collected 1st: $value")
+            }
+        }
+        delay(6000)
+        CoroutineScope(this.coroutineContext).launch {
+            data.collect { value ->
+                println("Collected 2nd: $value")
+            }
+        }
+    }
+}
