@@ -58,7 +58,7 @@ fun hotFlowWithMutableStateFlow() = runBlocking {
     }
 }
 
-fun main() {
+private fun main() {
     println("Calling: hotFlow()")
     //hotFlowWithMutableStateFlow()
     hotFlowWithMutableSharedFlow()
