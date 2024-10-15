@@ -43,7 +43,7 @@ fun getNetworkState(state: NetworkStateUsingEnum): String {
         }
     }
 }
-fun main() {
+private fun main() {
     println(getNetworkState(NetworkStateUsingEnum.CONNECTED))
     println(getNetworkState(NetworkStateUsingEnum.DISCONNECTED))
 }

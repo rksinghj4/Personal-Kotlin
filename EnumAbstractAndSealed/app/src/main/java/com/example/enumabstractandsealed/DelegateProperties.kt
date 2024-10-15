@@ -13,7 +13,7 @@ class User {
     }
 }
 
-fun main() {
+/*private fun main() {
     val user = User()
     user.name = "first"
     user.name = "second"
@@ -22,7 +22,7 @@ fun main() {
     user.age = 2
     user.age = 0 //It's is not assign to old value
     user.age = 3
-}
+}*/
 
 /**
  * The by-clause in the supertype list for Derived indicates that b will be stored internally
@@ -42,11 +42,10 @@ class BaseImpl2(val x: Float) : Base {
 
 class Derived(val b: Base) : Base by b
 
-/*
-fun main() {
+private fun main() {
     val b = BaseImpl(10)
     Derived(b).print()
 
     val b2 = BaseImpl2(11.0f)
     Derived(b2).print()
-}*/
+}

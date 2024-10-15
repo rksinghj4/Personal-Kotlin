@@ -50,7 +50,7 @@ fun loginUser(loginErrors: LoginErrors) {
     }
 }
 
-fun main() {
+private fun main() {
     val arr = arrayOf("")
     /*val fn1 = { a: Int, b: Int -> addition(a, b) }
     val fn2 = { a: Int, b: Int -> subtraction(a, b) }

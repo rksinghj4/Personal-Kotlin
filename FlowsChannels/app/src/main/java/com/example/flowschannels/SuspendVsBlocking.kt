@@ -50,7 +50,7 @@ private fun blockingFunction() {
     }
 }
 
-fun main() {
+private fun main() {
     //suspendingFunction()
     blockingFunction()
 }

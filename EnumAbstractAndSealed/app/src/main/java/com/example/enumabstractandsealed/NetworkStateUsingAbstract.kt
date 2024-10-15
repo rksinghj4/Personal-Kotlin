@@ -60,7 +60,7 @@ fun getNetworkStateUsingAbstract(state: NetworkStateUsingAbstract): String {
     //return ""
 }
 
-fun main() {
+private fun main() {
     println(getNetworkStateUsingAbstract(NetworkStateUsingAbstract.Loading))
     println(getNetworkStateUsingAbstract(NetworkStateUsingAbstract.Failure("Try again..")))
     println(

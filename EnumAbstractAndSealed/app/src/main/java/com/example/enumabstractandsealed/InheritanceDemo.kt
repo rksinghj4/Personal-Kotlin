@@ -19,7 +19,7 @@ class Employee(val profession: String, nameParam: String, agaParam: Int): Person
     }
 }
 
-fun main() {
+private fun main() {
     val person = Person( "Saifali", 27)
     val emp = Employee("Engineer", "Raj", 33)
 

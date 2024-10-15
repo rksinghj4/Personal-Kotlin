@@ -19,7 +19,7 @@ object Application {
     val nameAsStaticField = "StaticApplication" // @JvmField - behave like static filed while accessing
 }
 
-fun main() {
+private fun main() {
     println(Application.name)
     Application.newName = "YourApplication"
     println(Application.newName)

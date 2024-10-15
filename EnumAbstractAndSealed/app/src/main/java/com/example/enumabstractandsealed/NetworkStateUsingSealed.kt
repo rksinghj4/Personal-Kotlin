@@ -45,7 +45,7 @@ fun getNetworkStateUsingSealed(state: NetworkStateUsingSealed): String {
     }
 }
 
-fun main() {
+private fun main() {
     println(getNetworkStateUsingSealed(NetworkStateUsingSealed.Loading))
     println(getNetworkStateUsingSealed(NetworkStateUsingSealed.Failure("Try again..")))
     println(
