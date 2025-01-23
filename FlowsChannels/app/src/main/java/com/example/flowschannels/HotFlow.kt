@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
  * 4. It can have multiple collector. (1 to N)
  * 5. It has value property, which keeps history of last known value.
  * 6. It does not emit consecutive repeated values.
- * 7. It emits last know value.
+ * 7. It emits last known value.
  * 8. Similar to LiveData except for the Lifecycle awareness of the Android component.
  * We should use repeatOnLifecycle scope with StateFlow to add the Lifecycle awareness to it,
  * then it will become exactly like LiveData.
@@ -77,6 +77,7 @@ suspend fun producerWithMutableSharedFlow(): MutableSharedFlow<Int> {
 fun hotFlowWithMutableSharedFlow() = runBlocking {
     withContext(Dispatchers.IO) {
         val data: MutableSharedFlow<Int> = producerWithMutableSharedFlow()
+        delay(2000)
         println("Consumer Coroutine: Launched")
         CoroutineScope(this.coroutineContext).launch {
             data.collect { value ->
