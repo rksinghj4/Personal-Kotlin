@@ -2,6 +2,7 @@ package com.example.flowschannels
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,7 +29,7 @@ fun coldFlow() = runBlocking {
     withContext(Dispatchers.IO) {
         val data : Flow<Int> = producer()
         println("Consumer Coroutine: Launched")
-        val  job = CoroutineScope(Dispatchers.IO).launch {
+        val  job = CoroutineScope(Dispatchers.IO).async {
             //No collector - no emit
             data.collect { value ->
                 println("Collected 1st: $value")
@@ -38,16 +39,17 @@ fun coldFlow() = runBlocking {
                 println("Collected 2nd: $value")
             }
         }
-        delay(2500)
+        job.await()
+        //delay(2500)
         //When job is cancelled, collector will unsubscribe the flow.
         // Then emition of data will stop from cold flow.
-        job.cancel()
+        //job.cancel()
     }
 }
 
-/*
-fun main() {
+
+private fun main() {
     println("Calling: coldFlow()")
     coldFlow()
 }
-*/
+

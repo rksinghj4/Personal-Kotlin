@@ -6,7 +6,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.random.Random
 
-
 private fun main() {
     val channelCapacity = 2
     val streamLimit = 7
@@ -24,16 +23,19 @@ private fun main() {
                 println("Sending $it")
                 channel.send(it)
             }
+            channel.close()//In case of lose of data. Consumer should not wait for lost data.
         }
 
         launch {//Inherit: Run on underlying thread: ie. main
             println("Coroutine 2 running on: ${Thread.currentThread().name}")
-            (1..streamLimit).onEach {
+            /*(1..streamLimit).onEach {//Will throw ClosedReceiveChannelException on closed channel
                 delay(Random.nextLong(1000))
                 println("Receiving ${channel.receive()}")
+            }*/
+            for (item in channel) {//To avoid : ClosedReceiveChannelException
+                delay(Random.nextLong(1000))
+                println("Receiving ${item}")
             }
-
         }
     }
-
 }
