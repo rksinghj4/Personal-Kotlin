@@ -1,6 +1,11 @@
 package com.example.genericsandvariancedemo.differences
 
 /**
+ * In Kotlin, properties and methods are final by default, so if you don’t use open, they can't be overridden.
+ * Use private or protected if you want to restrict access to properties or methods.
+ * Simply don't mark the class or property as open if you want to prevent subclassing or overriding.
+ */
+/**
  * https://www.geeksforgeeks.org/whats-the-difference-between-const-and-val-in-kotlin/
  *
  * 1.const val  Must be at the top level or a member of an object or member of a companion object.

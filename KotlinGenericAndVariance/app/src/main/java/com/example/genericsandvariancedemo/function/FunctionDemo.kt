@@ -1,6 +1,7 @@
 package com.example.genericsandvariancedemo.function
 
 fun student(name: String="Praveen", marks: Float=99.8F, roll_no: Int=11 ) {
+    //name = "" //Error: Val cannot be reassigned
     println("Name of the student is: $name")
     println("Marks of the student is: $marks")
     println("Roll no of the student is: $roll_no")

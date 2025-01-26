@@ -14,9 +14,9 @@ fun <T : Any> printValueAndItsType(value: T, type: KClass<T>) {
 
 /**
  * 1. reified keyword must be used with inline.
- * 2. Inline - request the compiler not to alocate memory for inlined function.
+ * 2. Inline - request the compiler not to allocate memory for inlined function.
  * Just copy the code to call site.
- * 3. reified keyword - request the complier not to flag the error
+ * 3. reified keyword - request the compiler not to flag the error
  * if T::class(i.e. type of parameter) is accessed inside inline function,
  * because at the time you will copy the code of inline function at call site,
  * type of parameter can be accessed using reflection.

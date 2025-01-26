@@ -40,9 +40,9 @@ class College(val name: String) {
     }
     //object and companion object are by default final.
     final companion object UniversityDetails {
-        const val licenseExpiration = "31-Dec-2030"
+        final const val licenseExpiration = "31-Dec-2030"
         val adminInUniversityForMyCollege = "Krishna"
-        fun displayCourseList() {
+         fun displayCourseList() {
             //Container class members are not directly accessible inside companion
             // but with object we can access.
             College("JSS").listOfCourse.forEach { println(it) }

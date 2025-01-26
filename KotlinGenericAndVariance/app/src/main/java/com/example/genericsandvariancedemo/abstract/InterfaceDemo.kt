@@ -6,6 +6,7 @@ package com.example.genericsandvariancedemo.abstract
  * 3. Interface can't hold the state.
  * 4. We can't instantiate the interface.
  * 5. Members inside interface are by default open (or abstract if not define).
+ * 6. We can have at most one companion object and many objects
  */
 
 interface Animal {
@@ -27,6 +28,18 @@ interface Animal {
     }
 
     abstract fun walk()
+
+    companion object {
+        const val CO_IN_INTERFACE = "companion object"
+    }
+
+    object A {
+        const val CO_IN_INTERFACE = "Many objects are possible in interface"
+    }
+
+    object B {
+        const val OBJECT_IN_INTERFACE = "Many objects are possible in interface"
+    }
 }
 
 data class Fox(override var name: String, override var surname: String) : Animal {
