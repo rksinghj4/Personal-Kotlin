@@ -6,14 +6,15 @@ package com.example.genericsandvariancedemo.differences
  * (out side class companion is not allowed)
  * 1. Constructors are not allowed for object and companion object.
  * 2. object can be declare at the top level and it can be declare inside a class.
- * 3. Onc class can have only one companion but it can have multiple objects.
+ * 3. One class can have only one companion but it can have multiple objects.
  * 4. object is final it can't be extended by other class.
+ * 5. Modifier 'open' is not applicable to 'standalone object' or companion
  */
 
 /**
  * https://medium.com/swlh/singleton-design-pattern-with-kotlin-2e6c8d42fc11
  */
-object UniversityAddress {// University is common for all college
+final object UniversityAddress {// University is common for all college
     const val UniversityName = "UPTU"
     const val UniversityPhone = "23451 333333"
     const val universityVC = "YOGI JI"
@@ -27,17 +28,18 @@ class College(val name: String) {
         val addressInCollege: String by lazy { "Room number, NOIDA, UP" }
     }
 
-    /*object CollegeAddress {
+    final object CollegeAddress {
         val address: String = "NITC"
         val zipCode = "202280"
     }
 
+    //Modifier 'open' is not applicable to 'standalone object' or companion
     object Contacts {
         val phone: String = "571 4242422"
         val adminDepartmentPhone = "571 5455558"
-    }*/
-
-    companion object UniversityDetails {
+    }
+    //object and companion object are by default final.
+    final companion object UniversityDetails {
         const val licenseExpiration = "31-Dec-2030"
         val adminInUniversityForMyCollege = "Krishna"
         fun displayCourseList() {
@@ -46,6 +48,5 @@ class College(val name: String) {
             College("JSS").listOfCourse.forEach { println(it) }
         }
     }
-
 
 }
