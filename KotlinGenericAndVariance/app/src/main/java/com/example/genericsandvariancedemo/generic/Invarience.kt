@@ -6,7 +6,7 @@ open class Fruit_ {
 class Mango_() : Fruit_() {
 }
 
-class Container_<T>(t: T) {
+class Container_<T>(t: T) {//It is invariant because there is no in/out keyword.
     fun add(list: List<T>) {
     }
 }
@@ -71,7 +71,42 @@ fun main() {
     println(fruit2)
     println(mango1)
     println(mango2)
+    testInvariance()
+}
+
+fun test() {
+    //val immutableListDoesNotSupportContravariance: List<String> = listOf(Any())//Error: Type Mismatch
+    val immutableListSupportsCovariance: List<Any> = listOf("String")
+    //val mutableListAreInVariant: MutableList<String> = mutableListOf(Any())//Error: Type Mismatch
+    val mutableList: MutableList<String> = mutableListOf("String")
+    println("Read from MutableList: ${mutableList[0]}")//Read operation
+    mutableList[0] = "New String" //Write operation
+}
+
+/**
+ * MutableList, ArrayList and Array are invariant in kotlin, because they support both Read and write operation.
+ *
+ */
+private fun testInvariance() {
+    var strArrayList: ArrayList<String> = arrayListOf("aa", "bb")
+    strArrayList[1] = "CC"
+    //strArrayList = arrayListOf<Any>()//Error: Type mismatch
+    //val test : ArrayList<String> = arrayListOf<Any>()//Error: Type mismatch
+    //val anyArrayList1: ArrayList<Any> = strArrayList// Error: Type mismatch
+    //val anyArrayList2: ArrayList<Any> = arrayListOf<String>("aa", "bb")//Error: Type mismatch
+    // No Error at below line , because compile treated it as arrayListOf<Any>("aa", "bb")
+    val anyArrayList3: ArrayList<Any> = arrayListOf("aa", "bb")
+    anyArrayList3[1] = 1//It will crash, No
+    println("anyArrayList3 = $anyArrayList3")//Out put: anyArrayList3 = [aa, 1]
+
+    val intArr: Array<Int> = arrayOf(1, 2)
+    intArr[0] = 12
+    //val anyArr1: Array<Any> = intArr// Error: Type mismatch
+    val anyArr2: Array<Any> = arrayOf(1, 2)// No Error. But Why?
+    anyArr2[1] = "Str"
+    println("anyArr2[1] = ${anyArr2.toList()}")//Out put: anyArr2[1] = [1, Str]
 
 }
+
 
 

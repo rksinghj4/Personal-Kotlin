@@ -1,6 +1,6 @@
 package com.example.genericsandvariancedemo.generic
 
-class ArrayUtil<T>(val arrayList: List<T>) {
+class ArrayUtil<T>(private val arrayList: List<T>) {
 
     fun findElement(element: T, foundElement: (index: Int, element: T?) -> Unit) {
         for (i in arrayList.indices) {
