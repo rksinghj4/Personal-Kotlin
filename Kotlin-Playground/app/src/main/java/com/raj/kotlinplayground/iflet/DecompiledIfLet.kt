@@ -31,8 +31,32 @@ class DecompiledIfLet {
      *    }
      */
     fun testLet() {
-        user?.let {
+        user?.let {//Thread safe
             println(it)
+        }
+    }
+
+    fun testAlso() {
+        user?.also {//Thread safe
+            println(it)
+        }
+    }
+    fun testRun() {
+        user?.run {//Thread safe
+            println(this)
+        }
+    }
+
+    fun testApply() {//Thread safe
+        user?.apply {
+            println(this)
+        }
+    }
+
+
+    fun testWith() {
+        with(user) {//Not Thread safe
+            println(this)
         }
     }
 }
