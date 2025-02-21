@@ -100,6 +100,9 @@ fun functionB(case: Int, continuation: Continuation1?) {
     }
 }
 
+/**
+ * Under the hood Kotlin coroutines uses same Continuation SAM
+ */
 fun interface Continuation1 {
     fun resumeWith(result: String)
 }
