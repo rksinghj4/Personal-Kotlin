@@ -1,7 +1,5 @@
 package com.raj.coroutines.threadapproach;
 
-import android.util.Log;
-
 interface Listener {
     void onComplete(String result);
 }
@@ -10,14 +8,14 @@ class LongTaskUsingThread {
     private final String TAG = "LongTaskUsingThread";
 
     void callMeForLongTask() {
-        Log.d(TAG, "Start callMeForLongTask");
+        System.out.println("Start callMeForLongTask");
         doTaskUsingThread(new Listener() {
             @Override
             public void onComplete(String result) {
-                Log.d(TAG, "onComplete callMeForLongTask");
+                System.out.println("onComplete callMeForLongTask");
             }
         });
-        Log.d(TAG, "End callMeForLongTask");
+        System.out.println("End callMeForLongTask");
 
     }
 
@@ -31,7 +29,7 @@ class LongTaskUsingThread {
                     throw new RuntimeException(e);
                 }
 
-                listener.onComplete("Long task is done");
+                listener.onComplete("Long task is result");
             }
         }).start();
     }
