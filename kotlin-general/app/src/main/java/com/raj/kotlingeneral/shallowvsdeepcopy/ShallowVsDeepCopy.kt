@@ -77,19 +77,27 @@ private fun deepCopyGsonApproach() {
     val oldPerson = Person(name = "Raj", address = address)
 
     val newPersonJson = gson.toJson(oldPerson)
-    println("newPerson json formate = $newPersonJson")
+    val modifiedNewPersonJson = newPersonJson.replaceFirst("Raj", "Raj Kumar")
+    println("modifiedNewPersonJson = $modifiedNewPersonJson")
+    println("newPersonJson formate = $newPersonJson")
 
     val newPersonPOJO = gson.fromJson<Person>(newPersonJson, Person::class.java)
+    val modifiedNewPersonPOJO = gson.fromJson<Person>(modifiedNewPersonJson, Person::class.java)
 
     newPersonPOJO.address.city = "Greater Noida"
     println("deepCopy - Approach - by Gson library serialization/deserialization")
     println("oldPerson = $oldPerson")
     println("newPersonPOJO = $newPersonPOJO")
+    println("modifiedNewPersonPOJO: $modifiedNewPersonPOJO")
 
     /**
-     * newPerson json formate = {"name":"Raj","address":{"street":"street1","city":"New Delhi"}}
-     * deepCopy - Approach1 - by Gson library serialization/deserialization
+     * modifiedNewPersonJson = {"name":"Raj Kumar","address":{"street":"street1","city":"New Delhi"}}
+     * newPersonJson formate = {"name":"Raj","address":{"street":"street1","city":"New Delhi"}}
+     * deepCopy - Approach - by Gson library serialization/deserialization
      * oldPerson = Person(name=Raj, address=Address(street=street1, city=New Delhi))
      * newPersonPOJO = Person(name=Raj, address=Address(street=street1, city=Greater Noida))
+     * modifiedNewPersonPOJO: Person(name=Raj Kumar, address=Address(street=street1, city=New Delhi))
+     *
+     * Note: name is changed from Raj to Raj Kumar during serialization and deserialization
      */
 }
