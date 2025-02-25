@@ -102,9 +102,12 @@ fun longRunningTaskTwo(startTime: Long) {
     }
 }
 
+/**
+ * Runs fine
+ */
 fun launchCoroutine() {
     repeat(100_000) {
-        GlobalScope.launch { //Part of kotlin so default dispatcher is Dispatchers.Default
+        GlobalScope.launch { //GlobalScope - Part of kotlin so default dispatcher is Dispatchers.Default
             delay(5000L)
         }
     }
